@@ -1,1 +1,22 @@
-<%= render 'form', post: Post.new %>
+<h1>Create a Post</h1>
+
+<%= form_for @post  do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br />
+
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  <br />
+
+  <%= f.label :category_id %>
+  <% for cat in Category.all %>
+    <%= check_box_tag "post[category_ids][]", cat.id %>
+    <%=h cat.name %><br />
+  <% end %>
+  <br />
+  Add new category: <%= f.text_field :category_name %>
+  <br />
+
+  <%= f.submit %>
+<% end %>
